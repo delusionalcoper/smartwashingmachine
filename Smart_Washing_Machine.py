@@ -1,10 +1,9 @@
 import time
 import sys
 
-# Pengaturan dasar mesin cuci
 KAPASITAS_TABUNG = 55
 BATAS_BERAT_PAKAIAN = 8
-DEBIT_AIR = 6  # liter per menit
+DEBIT_AIR = 6  # Liter/Menit
 
 JENIS_PUTARAN = [
     "Regular", "Delicates", "Mixed", "Wool",
@@ -89,7 +88,6 @@ def proses_pencucian():
     if rinse_hold == "iya":
         waktu_rendam = input_int("Waktu rendam (menit): ", 1)
         print(f"Rinse Hold aktif selama {waktu_rendam} menit.")
-        # Simulasi waktu rendam agar sesuai pengaturan
         hitung_mundur(waktu_rendam * 60, "Sisa waktu rendam")
     else:
         print("Rinse Hold tidak aktif.")
@@ -102,7 +100,7 @@ def proses_pencucian():
         print(f"{nomor}. {nama}")
     pilihan_putaran = input_int("Pilih jenis putaran (1-7): ", 1, 7)
 
-    # Pengaturan kekuatan dan RPM sesuai jenis putaran
+    # Pengaturan Putaran dan RPM
     pengaturan_putaran = {
         1: ("Sedang", 800),
         2: ("Pelan", 400),
@@ -209,7 +207,7 @@ def main():
         proses_pencucian()
     elif mode == 2:
         pilihan_putaran = proses_pencucian()
-        # Memanggil fungsi yang sama; pengeringan tidak ditulis ulang.
+        # Memanggil fungsi pengeringan
         proses_pengeringan(pilihan_putaran)
     elif mode == 3:
         proses_pengeringan()
