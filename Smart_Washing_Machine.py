@@ -10,7 +10,7 @@ JENIS_PUTARAN = [
     "Heavy Duty", "Bedding", "Quick Wash"
 ]
 
-# Durasi standar pengeringan (detik) dan kekuatan putaran
+# Durasi pengeringan (detik) dan kekuatan putaran
 PENGERINGAN_STANDAR = {
     1: (7 * 60, "cepat"),
     2: (5 * 60, "lambat"),
@@ -22,32 +22,32 @@ PENGERINGAN_STANDAR = {
 }
 
 
-def input_int(prompt, minimum=None, maximum=None):
-    """Meminta bilangan bulat dan memvalidasi rentangnya."""
+def input_int(isi_input, min=None, max=None):
+    # meminta bilangan bulat dan harus sesuai rentang
     while True:
         try:
-            nilai = int(input(prompt))
-            if minimum is not None and nilai < minimum:
-                print(f"Masukkan angka minimal {minimum}.")
+            nilai = int(input(isi_input))
+            if min is not None and nilai < min:
+                print(f"Masukkan angka minimal {min}.")
                 continue
-            if maximum is not None and nilai > maximum:
-                print(f"Masukkan angka maksimal {maximum}.")
+            if max is not None and nilai > max:
+                print(f"Masukkan angka maksimal {max}.")
                 continue
             return nilai
         except ValueError:
             print("Masukkan bilangan bulat yang valid.")
 
 
-def input_ya_tidak(prompt):
+def input_ya_tidak(isi_input):
     while True:
-        jawaban = input(prompt).strip().lower()
+        jawaban = input(isi_input).strip().lower()
         if jawaban in ("yes", "no"):
             return jawaban
         print("Masukkan yes atau no.")
 
 
 def hitung_mundur(total_detik, pesan="Sisa waktu"):
-    """Simulasi penghitung waktu; jeda 0.01 detik mempercepat demonstrasi."""
+    #agar 1 detik menjadi 0.01 detik
     while total_detik > 0:
         menit, detik = divmod(total_detik, 60)
         print(f"\r{pesan}: {menit:02d}:{detik:02d}", end="", flush=True)
@@ -57,7 +57,6 @@ def hitung_mundur(total_detik, pesan="Sisa waktu"):
 
 
 def proses_pencucian():
-    """Menjalankan pengaturan dan simulasi pencucian; mengembalikan jenis program."""
     while True:
         try:
             berat_pakaian = float(input("Berat pakaian (kg): "))
@@ -136,7 +135,6 @@ def proses_pencucian():
 
 
 def proses_pengeringan(pilihan_putaran=None):
-    """Fungsi pengeringan yang dipakai mode 2 maupun mode 3."""
     if pilihan_putaran is None:
         print("\nPilih program pengeringan:")
         for nomor, nama in enumerate(JENIS_PUTARAN, start=1):
@@ -215,5 +213,5 @@ def main():
         proses_clean_tub()
 
 
-if __name__ == "__main__":
-    main()
+
+main()
